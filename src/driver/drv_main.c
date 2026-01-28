@@ -14,6 +14,7 @@
 #include "drv_ssdp.h"
 #include "drv_test_drivers.h"
 #include "drv_tuyaMCU.h"
+#include "drv_tuyaMCUSensor.h"
 #include "drv_girierMCU.h"
 #include "drv_uart.h"
 #include "drv_ds1820_simple.h"
@@ -36,7 +37,6 @@ typedef struct driver_s {
 } driver_t;
 
 
-void TuyaMCU_RunEverySecond();
 void GirierMCU_RunEverySecond();
 
 // startDriver BL0937
@@ -48,7 +48,7 @@ static driver_t g_drivers[] = {
 	//drvdetail:"requires":""}
 	{ "TuyaMCU",                             // Driver Name
 	TuyaMCU_Init,                            // Init
-	TuyaMCU_RunEverySecond,                  // onEverySecond
+	TuyaMCU_OnEverySecond,                  // onEverySecond
 	NULL,                                    // appendInformationToHTTPIndexPage
 	TuyaMCU_RunFrame,                        // runQuickTick
 	TuyaMCU_Shutdown,                        // stopFunction
@@ -62,7 +62,7 @@ static driver_t g_drivers[] = {
 	//drvdetail:"requires":""}
 	{ "tmSensor",                            // Driver Name
 	TuyaMCU_Sensor_Init,                     // Init
-	TuyaMCU_Sensor_RunEverySecond,           // onEverySecond
+	TuyaMCU_Sensor_OnEverySecond,           // onEverySecond
 	NULL,                                    // appendInformationToHTTPIndexPage
 	NULL,                                    // runQuickTick
 	NULL,                                    // stopFunction
