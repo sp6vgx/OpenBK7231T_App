@@ -32,3 +32,7 @@ bool TuyaMCU_IsLEDRunning() {
 
 void TuyaMCU_OnRGBCWChange(const float *rgbcw, int bLightEnableAll, int iLightMode, float brightnessRange01, float temperatureRange01) {
 }
+
+// what the fuck ? Used in: ../httpserver/json_interface.c
+int http_obk_json_dps(int id, void* request, jsonCb_t printer) {
+}
