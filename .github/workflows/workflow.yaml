@@ -14,7 +14,7 @@ env:
 jobs:
   refs:
     name: Prepare CI Environment
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     outputs:
       sha_short: ${{ steps.refs.outputs.sha_short }}
       short_ref: ${{ steps.refs.outputs.short_ref }}
@@ -57,7 +57,7 @@ jobs:
   build2:
     name: Build Simulator
     needs: refs
-    runs-on: windows-2022
+    runs-on: windows-latest
 
     steps:
     - name: Checkout repository
@@ -105,7 +105,7 @@ jobs:
   build_asan:
     name: Build Linux Simulator and Run Tests With Address Sanitizer
     needs: refs
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
@@ -127,7 +127,7 @@ jobs:
   build_ubsan:
     name: Build Linux Simulator and Run Tests With Undefined Behavior Sanitizer
     needs: refs
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
@@ -149,7 +149,7 @@ jobs:
   build:
     name: Build
     needs: refs
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -326,7 +326,7 @@ jobs:
   build_idf:
     name: Build IDF
     needs: refs
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -475,7 +475,7 @@ jobs:
 
   merge:
     name: Merge Artifacts
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     needs: [refs, build, build2, build_idf, build_txw81x]
     #if: always() && needs.refs.outputs.new_release == 'true' && (github.ref == 'refs/heads/main' || github.ref_name == 'alpha')
     steps:
@@ -487,7 +487,7 @@ jobs:
 
   release:
     name: Semantic Release Images and Artifacts
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     needs: [merge, refs]
     if: always() && needs.refs.outputs.new_release == 'true' && (github.ref == 'refs/heads/main' || github.ref_name == 'alpha')
     steps:
