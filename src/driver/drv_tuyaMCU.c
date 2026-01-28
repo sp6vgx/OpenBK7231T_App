@@ -27,6 +27,7 @@ void TuyaMCU_OnChannelChanged(int channel, int iVal) {
 }
 
 bool TuyaMCU_IsLEDRunning() {
+	return false;
 }
 
 void TuyaMCU_OnRGBCWChange(const float *rgbcw, int bLightEnableAll, int iLightMode, float brightnessRange01, float temperatureRange01) {
