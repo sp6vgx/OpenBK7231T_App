@@ -42,7 +42,7 @@ int TuyaMCU_GetTuyaMcuPacket(byte* rxPacketData, int maxPacketSize)
 		return ret;
 	}
 
-	wfile (rxDataSize > 0)
+	while (rxDataSize > 0)
 	{
 		rxPacketData[0] = UART_GetByte(0);
 		rxPacketData[1] = UART_GetByte(1);
